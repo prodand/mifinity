@@ -13,7 +13,12 @@ public class IndexController implements ErrorController {
   }
 
   @RequestMapping("/error")
+  public String error() {
+    return "index_dev.html";
+  }
+
+  @RequestMapping("/")
   public String index() {
-    return "index.html";
+    return "index_dev.html";
   }
 }
