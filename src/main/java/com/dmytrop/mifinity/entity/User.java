@@ -23,6 +23,9 @@ public class User extends AbstractEntity {
   protected User() {
   }
 
+  /**
+   * Initializes new user with {@link Role#REGULAR} role.
+   */
   public User(String login, String password) {
     this.login = login;
     this.password = password;

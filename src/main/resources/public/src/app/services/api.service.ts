@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http, URLSearchParams, Headers } from "@angular/http";
+import { User } from "../model/User";
 
 @Injectable()
 export class ApiService {
@@ -7,6 +8,27 @@ export class ApiService {
   static API_BASE: string = "api/";
 
   constructor(private http: Http) {
+  }
+
+  /**
+   * Auth functions
+   */
+  signUp(userInfo: User): Promise<any> {
+    return this.http.post(ApiService.API_BASE + 'user/create', userInfo).toPromise();
+  }
+
+  login(credentials: {login: string, password: string}): Promise<User> {
+    return this.http.post(ApiService.API_BASE + 'auth/login', credentials)
+        .toPromise()
+        .then(resp => {
+          return resp.json() as User;
+        });
+  }
+
+  ping(): Promise<User> {
+    return this.http.get(ApiService.API_BASE + 'auth/ping')
+        .toPromise()
+        .then(resp => resp.json())
   }
 
   /**
@@ -49,5 +71,18 @@ export class ApiService {
         .toPromise()
         .then(resp => resp.json() as T)
         .catch(reason => this.handleError(reason, [406]));
+  }
+
+  private handleError(error: any, ignore?: number[]) {
+    ignore = ignore || [];
+    if (ignore.find((status) => status == error.status)) {
+      throw error;
+    }
+    switch (error.status) {
+      case 401:
+      case 403:
+        throw 'Bad credentials';
+    }
+    throw error;
   }
 }

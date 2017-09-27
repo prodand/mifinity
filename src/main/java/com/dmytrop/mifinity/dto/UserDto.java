@@ -1,7 +1,10 @@
-package com.dmytrop.mifinity;
+package com.dmytrop.mifinity.dto;
 
 import com.dmytrop.mifinity.entity.enums.Role;
 
+/**
+ *
+ */
 public class UserDto {
 
   private String login;

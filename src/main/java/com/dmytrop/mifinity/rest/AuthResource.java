@@ -2,6 +2,7 @@ package com.dmytrop.mifinity.rest;
 
 import com.dmytrop.mifinity.converter.UserConverter;
 import com.dmytrop.mifinity.dao.UserRepository;
+import com.dmytrop.mifinity.dto.UserDto;
 import com.dmytrop.mifinity.entity.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +14,20 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Authentication endpoints.
+ */
 @RestController
 @RequestMapping("api")
 public class AuthResource {
 
   private final UserRepository userRepository;
-  private final BCryptPasswordEncoder bCryptPasswordEncoder;
   private final AuthenticationManager authenticationManager;
   private final UserConverter converter;
 
@@ -32,7 +36,6 @@ public class AuthResource {
       BCryptPasswordEncoder bCryptPasswordEncoder,
       AuthenticationManager authenticationManager, UserConverter converter) {
     this.userRepository = userRepository;
-    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     this.authenticationManager = authenticationManager;
     this.converter = converter;
   }
@@ -58,5 +61,15 @@ public class AuthResource {
       SecurityContextHolder.getContext().setAuthentication(null);
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
+  }
+
+  /**
+   * Resource to check if client has session and he is logged in.
+   * @return Authenticated user info.
+   */
+  @GetMapping(value = "ping")
+  public ResponseEntity<UserDto> ping() {
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getDetails();
+    return ResponseEntity.ok(converter.toDto(user));
   }
 }

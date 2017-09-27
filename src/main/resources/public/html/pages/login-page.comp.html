@@ -1,15 +1,27 @@
-<form>
+<form >
   <div>
     <label for="login">Login</label>
-    <input name="login" id="login" type="text" [(ngModel)]="login">
+    <input id="login"
+           name="login"
+           required
+           type="text"
+           [(ngModel)]="login">
   </div>
 
   <div>
     <label for="password">Password</label>
-    <input name="password" id="password" type="password" [(ngModel)]="password">
+    <input id="password"
+           name="password"
+           required
+           type="password"
+           [(ngModel)]="password">
   </div>
 
   <div>
     <button (click)="onLoginClick()">Login</button>
+  </div>
+  <div>
+    <span>{{errorMessage}}</span>
+    <span>{{warning}}</span>
   </div>
 </form>

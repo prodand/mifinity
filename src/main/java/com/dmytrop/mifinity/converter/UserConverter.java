@@ -1,6 +1,6 @@
 package com.dmytrop.mifinity.converter;
 
-import com.dmytrop.mifinity.UserDto;
+import com.dmytrop.mifinity.dto.UserDto;
 import com.dmytrop.mifinity.entity.User;
 
 import org.springframework.stereotype.Service;
