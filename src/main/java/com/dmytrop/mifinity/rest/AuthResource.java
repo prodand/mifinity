@@ -1,6 +1,6 @@
 package com.dmytrop.mifinity.rest;
 
-import com.dmytrop.mifinity.converter.UserConverter;
+import com.dmytrop.mifinity.service.ConverterService;
 import com.dmytrop.mifinity.dao.UserRepository;
 import com.dmytrop.mifinity.dto.UserDto;
 import com.dmytrop.mifinity.entity.User;
@@ -29,12 +29,12 @@ public class AuthResource {
 
   private final UserRepository userRepository;
   private final AuthenticationManager authenticationManager;
-  private final UserConverter converter;
+  private final ConverterService converter;
 
   @Autowired
   public AuthResource(UserRepository userRepository,
       BCryptPasswordEncoder bCryptPasswordEncoder,
-      AuthenticationManager authenticationManager, UserConverter converter) {
+      AuthenticationManager authenticationManager, ConverterService converter) {
     this.userRepository = userRepository;
     this.authenticationManager = authenticationManager;
     this.converter = converter;

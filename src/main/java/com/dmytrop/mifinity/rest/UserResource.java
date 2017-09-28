@@ -1,8 +1,8 @@
 package com.dmytrop.mifinity.rest;
 
-import com.dmytrop.mifinity.converter.UserConverter;
 import com.dmytrop.mifinity.dao.UserRepository;
 import com.dmytrop.mifinity.entity.User;
+import com.dmytrop.mifinity.service.ConverterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +23,12 @@ public class UserResource {
 
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
   private final UserRepository userRepository;
-  private final UserConverter converter;
+  private final ConverterService converter;
 
   @Autowired
   public UserResource(
       BCryptPasswordEncoder bCryptPasswordEncoder,
-      UserRepository userRepository, UserConverter converter) {
+      UserRepository userRepository, ConverterService converter) {
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     this.userRepository = userRepository;
     this.converter = converter;
