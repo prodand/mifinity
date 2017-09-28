@@ -2,11 +2,15 @@ package com.dmytrop.mifinity.validator;
 
 import com.dmytrop.mifinity.dto.CardDto;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 @Component
 public class CardValidator implements Validator {
@@ -23,15 +27,16 @@ public class CardValidator implements Validator {
     boolean valid = number != null &&
         number.replace(" ", "").matches("/[0-9]{4}/");
     if (!valid) {
-      errors.reject("number.invalid");
+      errors.reject("card.number.invalid");
     }
     Calendar inOneYear = Calendar.getInstance();
     inOneYear.add(Calendar.YEAR, 1);
     if (card.getExpireDate().before(inOneYear.getTime())) {
-      errors.reject("expire.date.invalid");
+      String key = "card.expire.date.invalid";
+      errors.reject(key);
     }
-    if (card.getName() == null && card.getName().isEmpty()) {
-      errors.reject("name.is.empty");
+    if (card.getName() == null || card.getName().isEmpty()) {
+      errors.reject("card.name.is.empty");
     }
   }
 }

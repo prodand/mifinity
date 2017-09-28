@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Resource to manage user accounts.
  */
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/user")
 public class UserResource {
 
   private final BCryptPasswordEncoder bCryptPasswordEncoder;

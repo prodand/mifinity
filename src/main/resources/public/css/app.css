@@ -1,0 +1,15 @@
+.flex {
+  display: flex;
+}
+
+.success {
+  color: #006400;
+}
+
+.error {
+  color: red;
+}
+
+.warning {
+  color: gold;
+}

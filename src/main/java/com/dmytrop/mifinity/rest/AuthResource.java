@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Authentication endpoints.
  */
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/auth")
 public class AuthResource {
 
   private final UserRepository userRepository;
@@ -47,7 +47,7 @@ public class AuthResource {
       @RequestParam("password") String password) {
     User user = userRepository.findByLogin(login);
     if (user == null) {
-      return ResponseEntity.notFound().build();
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
     try {
       UsernamePasswordAuthenticationToken token =

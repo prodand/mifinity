@@ -10,15 +10,18 @@ export class ApiService {
   constructor(private http: Http) {
   }
 
-  /**
-   * Auth functions
-   */
-  signUp(userInfo: User): Promise<any> {
-    return this.http.post(ApiService.API_BASE + 'user/create', userInfo).toPromise();
-  }
+  login(credentials: { login: string, password: string }): Promise<User> {
+    const body = new URLSearchParams();
+    body.set("login", credentials.login);
+    body.set("password", credentials.password);
 
-  login(credentials: {login: string, password: string}): Promise<User> {
-    return this.http.post(ApiService.API_BASE + 'auth/login', credentials)
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.post(ApiService.API_BASE + 'auth/login',
+        body.toString(),
+        {
+          headers: headers
+        })
         .toPromise()
         .then(resp => {
           return resp.json() as User;
@@ -52,7 +55,7 @@ export class ApiService {
     return this.http.post(ApiService.API_BASE + resource + "/create",
         body.toString(),
         {
-          headers : headers
+          headers: headers
         })
         .toPromise()
         .then(resp => resp.json() as T)

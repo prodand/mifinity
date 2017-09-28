@@ -1,0 +1,30 @@
+<form>
+  <div class="flex">
+    <div>
+      <label for="number">Card Number</label><br>
+      <input id="number" name="number" type="text" required [(ngModel)]="number">
+    </div>
+    <div>
+      <label for="name">Card Name</label><br>
+      <input id="name" name="name" type="text" required [(ngModel)]="name">
+    </div>
+    <div>
+      <label>Expiration Date</label><br>
+      <div>
+        <select name="expireMonth" required [(ngModel)]="expireMonth">
+          <option *ngFor="let month of months" value="{{month}}">{{month}}</option>
+        </select>
+        <select name="expireYear" [(ngModel)]="expireYear">
+          <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button (click)="onSubmitCard(cardForm)">Submit</button>
+  </div>
+  <div>
+    <span class="success">{{successMessage}}</span>
+    <span class="error">{{errorMessage}}</span>
+  </div>
+</form>
