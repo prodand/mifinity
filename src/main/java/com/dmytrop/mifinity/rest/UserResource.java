@@ -2,6 +2,7 @@ package com.dmytrop.mifinity.rest;
 
 import com.dmytrop.mifinity.dao.UserRepository;
 import com.dmytrop.mifinity.entity.User;
+import com.dmytrop.mifinity.entity.enums.Role;
 import com.dmytrop.mifinity.service.ConverterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class UserResource {
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     this.userRepository = userRepository;
     this.converter = converter;
+
+    // Hard coded admin user here cause don't want to create something more complicated.
+    User admin = new User("admin", bCryptPasswordEncoder.encode("admin"));
+    admin.setRole(Role.ADMIN);
+    this.userRepository.save(admin);
   }
 
   /**

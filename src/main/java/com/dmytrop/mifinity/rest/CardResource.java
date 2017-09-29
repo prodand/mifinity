@@ -112,4 +112,17 @@ public class CardResource {
     List<Card> cardList = repository.searchByNumber("%" + number + "%", user.getLogin());
     return ResponseEntity.ok(cardList);
   }
+
+  /**
+   * Lists all cards by requested number. Accessible to ADMIN users only.
+   * @param number
+   * @return
+   */
+  @GetMapping(path = "admin/list")
+  public ResponseEntity findAllByNumber(@RequestParam("number") String number) {
+    List<Card> cardList =
+        repository.searchByNumber("%" + number + "%");
+    return ResponseEntity.ok(cardList);
+  }
+
 }

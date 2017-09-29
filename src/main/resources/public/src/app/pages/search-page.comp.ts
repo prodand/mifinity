@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../services/api.service";
 import { Card } from "../model/Card";
+import { LoginService } from "../services/login.service";
 
 @Component({
   selector: 'search-page',
@@ -15,14 +16,15 @@ export class SearchPageComp implements OnInit {
   card: Card = new Card();
   hasList: boolean = true;
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private loginService: LoginService) {
   }
 
   ngOnInit() {
   }
 
   onSearchClick() {
-    this.api.list<Card>("card", {number: this.query})
+    const url = this.loginService.currentUser().role === 'ADMIN' ? 'card/admin' : 'card';
+    this.api.list<Card>(url, {number: this.query})
         .then(list => {
           if (list.length === 1) {
             this.card = list[0];

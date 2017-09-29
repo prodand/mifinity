@@ -37,6 +37,14 @@ export class LoginService {
     return this.pingState;
   }
 
+  logout(): Promise<any> {
+    return this.api.logout()
+        .then(response => {
+          this.user = null;
+          return response;
+        });
+  }
+
   currentUser(): User {
     return this.user;
   }

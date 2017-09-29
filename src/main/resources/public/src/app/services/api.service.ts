@@ -35,6 +35,11 @@ export class ApiService {
         .then(resp => resp.json())
   }
 
+  logout(): Promise<any> {
+    return this.http.put(ApiService.API_BASE + "auth/logout", {}).toPromise()
+        .catch(reason => this.handleError(reason));
+  }
+
   /**
    *Dao functions
    */

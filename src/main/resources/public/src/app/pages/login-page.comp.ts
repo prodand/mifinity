@@ -46,6 +46,9 @@ export class LoginPageComp implements OnInit {
               .catch(error => {
                 this.showError("Server error: " + error.status);
               });
+        })
+        .catch(reason => {
+          this.showError(reason.text());
         });
   }
 

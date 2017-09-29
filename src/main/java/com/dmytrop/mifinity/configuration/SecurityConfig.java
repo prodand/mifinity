@@ -1,6 +1,7 @@
 package com.dmytrop.mifinity.configuration;
 
 import com.dmytrop.mifinity.dao.UserRepository;
+import com.dmytrop.mifinity.entity.enums.Role;
 import com.dmytrop.mifinity.security.JpaUserDetailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
         .authorizeRequests()
         .antMatchers("/api/auth/login", "/api/auth/signup", "/api/user/create").permitAll()
+        .antMatchers("/api/card/admin/**")
+        .hasAuthority(Role.ADMIN.name())
+//        .access("hasRole('ROLE_ADMIN')")
         .antMatchers("/api/**")
         .authenticated();
   }
