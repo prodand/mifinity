@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Http, URLSearchParams, Headers } from "@angular/http";
+import { Headers, Http, URLSearchParams } from "@angular/http";
+import { Router } from "@angular/router";
 import { User } from "../model/User";
 
 @Injectable()
@@ -7,7 +8,7 @@ export class ApiService {
 
   static API_BASE: string = "api/";
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private router: Router) {
   }
 
   login(credentials: { login: string, password: string }): Promise<User> {
@@ -62,8 +63,14 @@ export class ApiService {
         .catch(reason => this.handleError(reason));
   }
 
-  list<T>(resource: string): Promise<T[]> {
-    return this.http.get(ApiService.API_BASE + resource + "/list")
+  list<T>(resource: string, params: Object): Promise<T[]> {
+    let searchParams: URLSearchParams = new URLSearchParams();
+    Object.keys(params).forEach(key => {
+      searchParams.set(key, params[key]);
+    });
+    return this.http.get(ApiService.API_BASE + resource + "/list", {
+      search: searchParams
+    })
         .toPromise()
         .then(resp => resp.json() as T[])
         .catch(reason => this.handleError(reason));
@@ -84,8 +91,10 @@ export class ApiService {
     switch (error.status) {
       case 401:
       case 403:
-        throw 'Bad credentials';
+        this.router.navigate(['login']);
+        break;
+      default:
+        throw error;
     }
-    throw error;
   }
 }

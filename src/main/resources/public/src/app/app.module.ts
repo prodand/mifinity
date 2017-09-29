@@ -7,6 +7,8 @@ import { RoutingModule } from "./app-routing.module";
 import { AppComp } from "./components/app.component";
 import { LoginPageComp } from "./pages/login-page.comp";
 import { CardFormPageComp } from "./pages/card-form-page.comp";
+import { SearchPageComp } from "./pages/search-page.comp";
+import { AppHeaderComp } from "./components/app-header.comp";
 import { ApiService } from "./services/api.service";
 import { LoginService } from "./services/login.service";
 import { AuthGuard } from "./services/auth-guard.service";
@@ -20,7 +22,7 @@ import "rxjs/add/operator/toPromise";
     FormsModule,
     RoutingModule,
   ],
-  declarations: [AppComp, LoginPageComp, CardFormPageComp],
+  declarations: [AppComp, AppHeaderComp, LoginPageComp, CardFormPageComp, SearchPageComp],
   providers: [ApiService, LoginService, AuthGuard],
   bootstrap: [AppComp],
 })

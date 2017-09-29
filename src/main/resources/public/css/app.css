@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
 .success {
   color: #006400;
 }
@@ -12,4 +16,12 @@
 
 .warning {
   color: gold;
+}
+
+.header {
+  padding: 10px 0;
+}
+
+.header > a {
+  margin-right: 15px;
 }

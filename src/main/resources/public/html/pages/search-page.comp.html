@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div class="flex">
+  <input id="query" type="text" [(ngModel)]="query">
+  <button (click)="onSearchClick()">Search</button>
+</div>
+<div class="list" [hidden]="!hasList">
+  <div class="flex" *ngFor="let crd of cards">
+    <div class="flex-1">{{crd.number}}</div>
+    <div class="flex-1">{{crd.name}}</div>
+    <div class="flex-1">{{crd.expireDate | date:'dd/MM/yyyy'}}</div>
+  </div>
+</div>
+<div class="card" [hidden]="hasList">
+  <div>
+    <span><strong>Number</strong></span>
+    <span>{{card.number}}</span>
+  </div>
+  <div>
+    <span><strong>Card Name</strong></span>
+    <span>{{card.name}}</span>
+  </div>
+  <div>
+    <span><strong>Expire Date</strong></span>
+    <span>{{card.expireDate | date:'dd/MM/yyyy'}}</span>
+  </div>
+</div>

@@ -1,12 +1,25 @@
+<app-header></app-header>
 <form>
   <div class="flex">
     <div>
       <label for="number">Card Number</label><br>
-      <input id="number" name="number" type="text" required [(ngModel)]="number">
+      <input
+          id="number"
+          name="number"
+          type="text"
+          placeholder="1111 2222 3333"
+          required
+          [(ngModel)]="number">
     </div>
     <div>
       <label for="name">Card Name</label><br>
-      <input id="name" name="name" type="text" required [(ngModel)]="name">
+      <input
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Joe Dou"
+          required
+          [(ngModel)]="name">
     </div>
     <div>
       <label>Expiration Date</label><br>

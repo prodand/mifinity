@@ -2,15 +2,11 @@ package com.dmytrop.mifinity.validator;
 
 import com.dmytrop.mifinity.dto.CardDto;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import java.util.Calendar;
-import java.util.Locale;
 
 @Component
 public class CardValidator implements Validator {
@@ -25,7 +21,7 @@ public class CardValidator implements Validator {
     CardDto card = (CardDto) target;
     String number = card.getNumber();
     boolean valid = number != null &&
-        number.replace(" ", "").matches("/[0-9]{4}/");
+        number.replace(" ", "").matches("[0-9]{12}");
     if (!valid) {
       errors.reject("card.number.invalid");
     }
