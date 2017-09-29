@@ -7,6 +7,9 @@ import com.dmytrop.mifinity.entity.User;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * Utility Service to convert dto to entity and vice versa.
+ */
 @Service
 public class ConverterService {
 

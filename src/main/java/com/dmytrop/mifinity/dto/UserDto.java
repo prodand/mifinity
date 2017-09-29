@@ -3,7 +3,7 @@ package com.dmytrop.mifinity.dto;
 import com.dmytrop.mifinity.entity.enums.Role;
 
 /**
- *
+ * Dto for User.
  */
 public class UserDto {
 

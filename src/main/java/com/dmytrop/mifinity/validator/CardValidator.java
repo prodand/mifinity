@@ -8,6 +8,9 @@ import org.springframework.validation.Validator;
 
 import java.util.Calendar;
 
+/**
+ * Validator for Card creation requests.
+ */
 @Component
 public class CardValidator implements Validator {
 

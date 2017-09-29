@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Collections;
 
+/**
+ * Service is used by Spring Security to get authentication information.
+ */
 public class JpaUserDetailService implements UserDetailsService {
 
   private final UserRepository userRepository;

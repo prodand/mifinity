@@ -106,6 +106,9 @@ public class CardResource {
     return ResponseEntity.ok(converter.toDto(existing));
   }
 
+  /**
+   * Retrieves cards for logged in user by specified number pattern.
+   */
   @GetMapping(path = "list")
   public ResponseEntity findByNumber(@RequestParam("number") String number) {
     User user = Utils.getCurrentUser();
@@ -115,8 +118,6 @@ public class CardResource {
 
   /**
    * Lists all cards by requested number. Accessible to ADMIN users only.
-   * @param number
-   * @return
    */
   @GetMapping(path = "admin/list")
   public ResponseEntity findAllByNumber(@RequestParam("number") String number) {
