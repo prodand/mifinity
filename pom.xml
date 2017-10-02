@@ -48,6 +48,12 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources-filtered</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -65,4 +71,23 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <index.file.html>index_dev.html</index.file.html>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>release</id>
+      <properties>
+        <index.file.html>index.html</index.file.html>
+      </properties>
+    </profile>
+  </profiles>
 </project>

@@ -88,7 +88,7 @@ export class ApiService {
         .catch(reason => this.handleError(reason, [406]));
   }
 
-  private handleError(error: any, ignore?: number[]) {
+  private handleError(error: any, ignore?: number[]): any {
     ignore = ignore || [];
     if (ignore.find((status) => status == error.status)) {
       throw error;

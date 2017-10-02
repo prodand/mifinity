@@ -7,7 +7,7 @@
   <div class="flex" *ngFor="let crd of cards">
     <div class="flex-1">{{crd.number}}</div>
     <div class="flex-1">{{crd.name}}</div>
-    <div class="flex-1">{{crd.expireDate | date:'dd/MM/yyyy'}}</div>
+    <div class="flex-1">{{crd.expireDate | date:'MM/yyyy'}}</div>
   </div>
 </div>
 <div class="card" [hidden]="hasList">
@@ -21,6 +21,6 @@
   </div>
   <div>
     <span><strong>Expire Date</strong></span>
-    <span>{{card.expireDate | date:'dd/MM/yyyy'}}</span>
+    <span>{{card.expireDate | date:'MM/yyyy'}}</span>
   </div>
 </div>

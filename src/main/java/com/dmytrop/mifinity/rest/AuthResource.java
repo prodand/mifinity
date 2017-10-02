@@ -34,7 +34,6 @@ public class AuthResource {
 
   @Autowired
   public AuthResource(UserRepository userRepository,
-      BCryptPasswordEncoder bCryptPasswordEncoder,
       AuthenticationManager authenticationManager, ConverterService converter) {
     this.userRepository = userRepository;
     this.authenticationManager = authenticationManager;
