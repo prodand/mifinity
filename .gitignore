@@ -2,6 +2,5 @@ node_modules
 target
 *.iml
 .idea
-src/main/resources/public/app
 src/main/resources/public/src/**/*.js
 src/main/resources/public/src/**/*.js.map
